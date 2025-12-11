@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SG — Events & Invitations</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- PROTECTION: Redirect to login if not authenticated -->
+  <script>
+    if (sessionStorage.getItem("sg_authenticated") !== "true") {
+      window.location.href = "index.html";
+    }
+  </script>
+
+  <div class="container">
+    <h1>SG — Events & Invitations</h1>
+    <!-- Add Logout button at the top -->
+    <div style="margin-bottom: 20px; text-align: right;">
+      <button onclick="logout()" style="background: #ff4444; width: auto; padding: 8px 16px;">Logout</button>
+    </div>
+
+    <!-- Rest of your original content -->
+    <!-- Create event -->
+    <div class="card">
+      <h2>Create Event</h2>
+      <input id="eventName" placeholder="Event Name">
+      <input id="venue" placeholder="Venue">
+      <textarea id="description" placeholder="Description"></textarea>
+      <input id="date" type="date">
+      <input id="time" type="time">
+      <input id="dressCode" placeholder="Dress Code">
+      <button id="saveEvent">Save Event</button>
+      <ul id="eventList"></ul>
+    </div>
+    <!-- Generate invitation -->
+    <div class="card" id="create-invitation" style="display:none;">
+      <h2>Generate Invitation</h2>
+      <select id="eventSelect"></select>
+      <input id="guestName" placeholder="Guest Full Name">
+      <button id="generateInvitation">Generate</button>
+      <div id="invitationResult"></div>
+    </div>
+    <!-- History -->
+    <div class="card">
+      <h2>Invitation History</h2>
+      <div class="actions">
+        <button id="clearHistory">Clear History</button>
+        <button id="exportHistory">Export JSON</button>
+      </div>
+      <div class="table-wrapper">
+        <table id="historyTable">
+          <thead>
+            <tr><th>Guest</th><th>Event</th><th>Link</th><th>Action</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+    <!-- Settings -->
+    <div class="card">
+      <h2>Settings</h2>
+      <input id="newPass" type="password" placeholder="New Admin Password">
+      <button id="changePass">Change Password</button>
+    </div>
+  </div>
+
+  <!-- Logout function -->
+  <script>
+    function logout() {
+      sessionStorage.removeItem("sg_authenticated");
+      window.location.href = "index.html";
+    }
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

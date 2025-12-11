@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SG — Invitation</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h2 id="title">Invitation</h2>
+      <div id="content">Loading...</div>
+    </div>
+  </div>
+
+  <script>
+    function decodeData(b64){
+      try{
+        const binary = atob(b64);
+        const bytes = new Uint8Array(binary.length);
+        for(let i=0;i<binary.length;i++) bytes[i]=binary.charCodeAt(i);
+        return new TextDecoder().decode(bytes);
+      }catch(e){ return null; }
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    const dataParam = params.get("data");
+
+    if(dataParam){
+      try{
+        const jsonStr = decodeData(dataParam);
+        const obj = JSON.parse(jsonStr);
+        document.getElementById("content").innerText =
+`Dear ${obj.guest}
+
+You are invited to:
+${obj.eventName}
+
+When: ${obj.date} ${obj.time}
+Where: ${obj.venue}
+Dress code: ${obj.dressCode}
+
+Notes:
+${obj.description}`;
+      }catch(e){
+        document.getElementById("content").innerText = "Invalid invitation data.";
+      }
+    } else {
+      document.getElementById("content").innerText = "No invitation data found.";
+    }
+  </script>
+</body>
+</html>

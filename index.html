@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SG — Admin Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="login-page">
+  <div class="login-container">
+    <h1>Admin Login</h1>
+    <p class="muted">Enter your password</p>
+    <input id="pass" type="password" placeholder="Password">
+    <button id="go">Enter</button>
+    <div id="err" class="error-message">Incorrect password</div>
+  </div>
+
+  <script>
+    // Set default password if none exists
+    if (!localStorage.getItem("sg_password")) {
+      localStorage.setItem("sg_password", "sgadmin2828");
+    }
+
+    // If already authenticated, go straight to dashboard
+    if (sessionStorage.getItem("sg_authenticated") === "true") {
+      window.location.href = "dashboard.html";
+    }
+
+    document.getElementById('go').addEventListener('click', () => {
+      const stored = localStorage.getItem("sg_password");
+      const input = document.getElementById('pass').value;
+
+      if (input === stored) {
+        sessionStorage.setItem("sg_authenticated", "true");  // Mark as logged in (only this browser tab/session)
+        window.location.href = "dashboard.html";
+      } else {
+        document.getElementById('err').style.display = 'block';
+        setTimeout(() => document.getElementById('err').style.display = 'none', 2000);
+      }
+    });
+
+    // Allow Enter key to submit
+    document.getElementById('pass').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') document.getElementById('go').click();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+:root {
+  --dark-blue: #0a192f;
+  --mid-blue: #112d4e;
+  --accent-blue: #0077ff;
+  --white: #ffffff;
+  --grey: #cccccc;
+}
+
+body {
+  background: linear-gradient(135deg, var(--dark-blue), #0d1e36);
+  color: var(--white);
+  font-family: 'Poppins', Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+}
+
+.card {
+  background: var(--mid-blue);
+  padding: 20px;
+  margin: 15px 0;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+}
+
+h1, h2 {
+  margin-top: 0;
+  color: var(--white);
+}
+
+.muted {
+  color: var(--grey);
+  font-size: 14px;
+}
+
+/* Login Page */
+.login-container {
+  max-width: 400px;
+  margin: 80px auto;
+  padding: 30px;
+  background: var(--mid-blue);
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+}
+
+.login-container h1 {
+  margin-bottom: 10px;
+}
+
+.error-message {
+  display: none;
+  color: #ff4444;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+/* Inputs & Buttons */
+input, textarea, select, button {
+  width: 100%;
+  margin: 8px 0;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  box-sizing: border-box;
+  font-size: 15px;
+}
+
+input, textarea, select {
+  background-color: var(--dark-blue);
+  color: var(--white);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+button {
+  background-color: var(--accent-blue);
+  color: var(--white);
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: #3399ff;
+}
+
+/* Event List */
+#eventList li {
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--accent-blue);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#eventList button {
+  width: auto;
+  padding: 4px 8px;
+  font-size: 13px;
+}
+
+/* Invitation Result */
+#invitationResult {
+  margin-top: 20px;
+  background-color: var(--dark-blue);
+  padding: 10px;
+  border-radius: 6px;
+  text-align: center;
+  white-space: pre-wrap;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* History Table */
+.table-wrapper {
+  max-height: 300px;
+  overflow-y: auto;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+th, td {
+  border-bottom: 1px solid var(--accent-blue);
+  padding: 6px;
+  text-align: left;
+}
+th {
+  background: rgba(255,255,255,0.1);
+}
+td button {
+  width: auto;
+  padding: 4px 8px;
+  font-size: 13px;
+}
+.actions {
+  margin-bottom: 10px;
+  display: flex;
+  gap: 10px;
+}
